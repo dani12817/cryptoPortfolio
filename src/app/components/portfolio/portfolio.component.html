@@ -1,0 +1,67 @@
+<div class="portfolioContainer">
+    <mat-card class="portfolio">
+        <div class="portfolioHeader" fxLayout="row" fxLayoutAlign=" center">
+            <div class="portfolioName">{{ portfolio.name }}</div>
+    
+            <div class="portfolioActions">
+                <button mat-icon-button (click)="actionPortDialog()" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="accent" matTooltip="Editar portfolio">edit</mat-icon>
+                </button>
+
+                <button mat-icon-button (click)="deletePortDialog()" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="warn" matTooltip="Borrar portfolio">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="portfolioTotal">
+            <ng-container *ngIf="portfolio.eurValue != null">
+                {{ portfolio.eurValue  | number:'0.0-2'}} €
+            </ng-container>
+        </div>
+    </mat-card>
+
+    <div class="portfolioLines" fxLayout="row wrap">
+        <mat-progress-spinner mode="indeterminate" diameter="75" *ngIf="loadingServ.loadingPortLines"></mat-progress-spinner>
+
+        <mat-card class="portfolioLine" *ngFor="let portLine of portfolio.portLines">
+            <div class="portfolioLineHeader" fxLayout="row" fxLayoutAlign=" center">
+                <div class="portfolioCrytoName">{{ portLine.currency.name }} ({{ portLine.currency.acronym }})</div>
+        
+                <div class="portfolioLineActions">
+                    <button mat-icon-button (click)="actionPortLineDialog(portLine)" [disabled]="loadingServ.actionInProgress">
+                        <mat-icon color="accent" matTooltip="Editar línea del Portfolio">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button (click)="deletePortLineDialog(portLine)" [disabled]="loadingServ.actionInProgress">
+                        <mat-icon color="warn" matTooltip="Borrar línea del Portfolio">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="portfolioCrytoCurrency" fxLayout="row" fxLayoutAlign="space-between none">
+                <div class="portfolioCrytoAmount">
+                    {{ portLine.amount | number:'0.0-5' }} {{ portLine.currency.acronym }}
+                </div>
+
+                <div class="portfolioCrytoEUR">
+                    <ng-container *ngIf="portLine.currency.eurValue !== null && portLine.currency.eurValue > 0; else elseWarning">
+                        {{ portLine.currency.eurValue | number:'0.0-5' }} €
+                    </ng-container>
+
+                    <ng-template #elseWarning>
+                        <mat-icon color="warn" matTooltip="Valor no encontrado">warning</mat-icon>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="portfolioCrytoEURTotal">
+                Total: {{ portLine.amount * portLine.currency.eurValue | number:'0.0-2' }} €
+            </div>
+        </mat-card>
+    </div>
+</div>
+
+<button class="createPortLineButton" mat-fab (click)="actionPortLineDialog()" matTooltip="Crear una línea en el Portafolio" [disabled]="loadingServ.loadingPortLines || loadingServ.actionInProgress">
+    <mat-icon>add</mat-icon>
+</button>

@@ -1,0 +1,27 @@
+.actionCurrencyContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .actionCurrencyTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .actionCurrencyBody {
+        margin: 12px 0;
+        
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    .actionCurrencyActions {
+        margin-top: auto;
+        margin-left: auto;
+
+        button:not(:last-child) {
+            margin-right: 12px;
+        }
+    }
+}

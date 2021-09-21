@@ -1,0 +1,18 @@
+<div class="actionPortfolioContainer">
+  <div class="actionPortfolioTitle">{{ porfolio.id ? 'Editar Línea de Portfolio' : 'Crear Línea de Portfolio' }}</div>
+
+  <div class="actionPortfolioBody">
+    <form [formGroup]="porfolioFrom.formGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Nombre" required>
+        <mat-error fxShow="porfolioFrom.hasError('name')">{{ porfolioFrom.hasError('name') }}</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="actionPortfolioActions">
+    <button mat-raised-button (click)="closeDialog()" color="warn" [disabled]="porfolioFrom.formIsInvalid()">{{ porfolio.id ? 'Actualizar' : 'Crear' }}</button>
+    <button mat-button color="primary" (click)="closeDialog(true)">Cerrar</button>
+  </div>
+</div>

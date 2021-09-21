@@ -1,0 +1,88 @@
+.portfoliosContainer {
+    width: 100%;
+    margin: 0 auto;
+
+    mat-card.portfolio {
+        box-sizing: border-box;
+        margin-bottom: 16px;
+        background-color: #95c7f9;
+
+        .portfolioActions {
+            min-width: 80px;
+        }
+
+        .portfolioName {
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .portfolioTotal {
+            height: 20px;
+            margin-top: 24px;
+            font-size: 16px;
+            font-weight: italic;
+            text-align: end;
+        }
+    }
+
+    mat-card.portfolio:hover {
+        background-color: rgba(grey, 0.1);;
+    }
+}
+
+.createPorfolioButton {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+}
+
+@media screen and (min-width: 1000px) {
+    .portfoliosContainer {
+        max-width: 1200px;
+
+        mat-card:not(:nth-child(4n)) {
+            margin-right: 12px;
+        }
+
+        mat-card.portfolio {
+            width: calc(25% - 9px);
+        }
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 999px) {
+    .portfoliosContainer {
+        max-width: 760px;
+    
+        mat-card:not(:nth-child(3n)) {
+            margin-right: 12px;
+        }
+
+        mat-card.portfolio {
+            width: calc(33.33% - 8px);
+        }
+    }
+}
+
+@media screen and (min-width: 591px) and (max-width: 799px) {
+    .portfoliosContainer {   
+        mat-card:not(:nth-child(2n)) {
+            margin-right: 16px;
+        }
+
+        mat-card.portfolio {
+            width: calc(50% - 8px);
+        }
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .portfoliosContainer {   
+        mat-card.portfolio {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div class="portfoliosContainer" fxLayout="row wrap" fxLayoutAlign="start none">
+    <mat-card class="portfolio" *ngFor="let portfolio of portList">
+        <div class="portfolioHeader" fxLayout="row" fxLayoutAlign=" center">
+            <div class="portfolioName" [routerLink]="[ '/portfolio', portfolio.id ]">{{ portfolio.name }}</div>
+    
+            <div class="portfolioActions">
+                <button mat-icon-button (click)="actionPortDialog(portfolio)" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="accent" matTooltip="Editar portfolio">edit</mat-icon>
+                </button>
+
+                <button mat-icon-button (click)="deletePortDialog(portfolio)" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="warn" matTooltip="Borrar portfolio">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="portfolioTotal">
+            <ng-container *ngIf="portfolio.eurValue != null">
+                {{ portfolio.eurValue | number:'0.0-2'}} €
+            </ng-container>
+        </div>
+    </mat-card>
+</div>
+
+<button class="createPorfolioButton" mat-fab (click)="actionPortDialog()" matTooltip="Crear Portafolio" [disabled]="loadingServ.loading || loadingServ.actionInProgress">
+    <mat-icon>add</mat-icon>
+</button>

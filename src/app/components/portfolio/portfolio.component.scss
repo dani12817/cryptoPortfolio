@@ -1,0 +1,134 @@
+.portfolioContainer {
+    width: 100%;
+    margin: 0 auto;
+
+    mat-card.portfolio {
+        width: 100%;
+        margin-bottom: 16px;
+        background-color: #95c7f9;
+        box-sizing: border-box;
+
+        .portfolioName {
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .portfolioTotal {
+            height: 20px;
+            margin-top: 24px;
+            font-size: 16px;
+            font-weight: italic;
+            text-align: end;
+        }
+    }
+
+    .portfolioLines {
+        width: 100%;
+
+        mat-progress-spinner {
+            font-size: 48px;
+            margin: 0 auto;
+        }
+
+        mat-card.portfolioLine {
+            margin-bottom: 16px;
+            background-color: #e1eefc;
+            box-sizing: border-box;
+
+            .portfolioCrytoName {
+                width: 100%;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .portfolioCrytoCurrency {
+                margin-top: 24px;
+
+                .portfolioCrytoEUR {
+                    font-style: italic;
+
+                    mat-icon {
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            .portfolioCrytoEURTotal {
+                margin-top: 12px;
+            }
+            
+            .portfolioCrytoEUR, .portfolioCrytoEURTotal {
+                font-size: 16px;
+                text-align: end;
+            }
+        }
+    }
+
+    .portfolioActions, .portfolioLineActions {
+        min-width: 80px;
+    }
+}
+
+.createPortLineButton {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+}
+
+@media screen and (min-width: 1000px) {
+    .portfolioContainer {
+        max-width: 1200px;
+    
+        .portfolioLines {
+            mat-card:not(:nth-child(4n)) {
+                margin-right: 12px;
+            }
+
+            mat-card.portfolioLine {
+                width: calc(25% - 9px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 999px) {
+    .portfolioContainer {
+        max-width: 760px;
+    
+        .portfolioLines {
+            mat-card:not(:nth-child(3n)) {
+                margin-right: 12px;
+            }
+
+            mat-card.portfolioLine {
+                width: calc(33.33% - 8px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 591px) and (max-width: 799px) {
+    .portfolioContainer {    
+        .portfolioLines {
+            mat-card:not(:nth-child(2n)) {
+                margin-right: 16px;
+            }
+
+            mat-card.portfolioLine {
+                width: calc(50% - 8px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .portfolioContainer {    
+        .portfolioLines {  
+            mat-card.portfolioLine {
+                width: 100%;
+            }
+        }
+    }
+}

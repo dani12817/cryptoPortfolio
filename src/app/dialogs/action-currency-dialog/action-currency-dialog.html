@@ -1,0 +1,39 @@
+<div class="actionCurrencyContainer">
+  <div class="actionCurrencyTitle">{{ currency.id ? 'Editar Criptomoneda' : 'Crear Criptomoneda' }}</div>
+
+  <div class="actionCurrencyBody">
+    <form [formGroup]="currencyFrom.formGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Acrónimo</mat-label>
+        <input matInput type="text" formControlName="acronym" placeholder="Acrónimo" required>
+
+        <button mat-icon-button (click)="checkCrypto()"  matTooltip="Comprobar Criptomoneda" [disabled]="emptyRealCryptos()" matSuffix>
+          <mat-icon color="accent">check</mat-icon>
+        </button>
+
+        <mat-error fxShow="currencyFrom.hasError('acronym')">{{ currencyFrom.hasError('acronym') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Nombre" required>
+        <mat-error fxShow="currencyFrom.hasError('name')">{{ currencyFrom.hasError('name') }}</mat-error>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Criptomones reales</mat-label>
+      <input type="text" placeholder="Nombre (Acrónimo)" matInput [matAutocomplete]="auto" [formControl]="currencyServ.realCryptoControl">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="prepareSelectedOption($event)">
+        <mat-option *ngFor="let realCrypto of currencyServ.filteredRealCryptos | async" [value]="realCrypto">
+          {{ realCrypto.CoinName }} ({{ realCrypto.Name }})
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="actionCurrencyActions">
+    <button mat-raised-button (click)="closeDialog()" color="warn" [disabled]="currencyFrom.formIsInvalid()">{{ currency.id ? 'Actualizar' : 'Crear' }}</button>
+    <button mat-button color="primary" (click)="closeDialog(true)">Cerrar</button>
+  </div>
+</div>

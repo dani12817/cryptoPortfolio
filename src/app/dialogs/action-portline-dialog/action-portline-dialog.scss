@@ -1,0 +1,29 @@
+.actionPortLineContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .actionPortLineTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .actionPortLineBody {
+        margin: 12px 0;
+
+        form {
+            mat-form-field {
+                width: 100%;
+            }
+        }
+    }
+
+    .actionPortLineActions {
+        margin-top: auto;
+        margin-left: auto;
+
+        button:not(:last-child) {
+            margin-right: 12px;
+        }
+    }
+}

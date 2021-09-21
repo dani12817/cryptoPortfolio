@@ -1,0 +1,12 @@
+<div class="confirmActionContainer">
+  <div class="confirmActionTitle">{{ confirmAction.title }}</div>
+
+  <div class="confirmActionBody">
+    {{ confirmAction.description }}
+  </div>
+
+  <div class="confirmActionActions">
+    <button mat-raised-button (click)="closeDialog(true)" color="warn">Borrar</button>
+    <button mat-button color="primary" (click)="closeDialog(false)">Cerrar</button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.confirmActionContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .confirmActionTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .confirmActionBody {
+        margin: 12px 0;
+    }
+
+    .confirmActionActions {
+        margin-top: auto;
+        margin-left: auto;
+
+        button:not(:last-child) {
+            margin-right: 12px;
+        }
+    }
+}

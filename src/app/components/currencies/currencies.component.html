@@ -1,0 +1,27 @@
+<div class="currenciesContainer" fxLayout="row wrap" fxLayoutAlign="start none">
+    <mat-card class="currency" *ngFor="let currency of currencyList">
+        <div class="currencyHeader" fxLayout="row" fxLayoutAlign=" center">
+            <div class="currencyName">{{ currency.name }} ({{ currency.acronym }})</div>
+    
+            <div class="currencyActions">
+                <button mat-icon-button (click)="actionCurrenDialog(currency)" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="accent" matTooltip="Editar Criptomoneda">edit</mat-icon>
+                </button>
+
+                <button mat-icon-button (click)="deleteCurrenDialog(currency)" [disabled]="loadingServ.actionInProgress">
+                    <mat-icon color="warn" matTooltip="Borrar Criptomoneda">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="currencyTotal">
+            <ng-container *ngIf="currency.eurValue != null">
+                {{ currency.eurValue | number:'0.0-7'}} €
+            </ng-container>
+        </div>
+    </mat-card>
+</div>
+
+<button class="createPorfolioButton" mat-fab (click)="actionCurrenDialog()" matTooltip="Crear Criptomoneda" [disabled]="loadingServ.actionInProgress">
+    <mat-icon>add</mat-icon>
+</button>

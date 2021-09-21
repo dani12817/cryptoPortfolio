@@ -1,0 +1,29 @@
+<div class="actionPortLineContainer">
+  <div class="actionPortLineTitle">{{ portLine.id ? 'Editar Línea de Portfolio' : 'Crear Línea de Portfolio' }}</div>
+
+  <div class="actionPortLineBody">
+    <form [formGroup]="portLineFrom.formGroup">
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="amount" placeholder="Cantidad" required>
+        <mat-error fxShow="portLineFrom.hasError('amount')">{{ portLineFrom.hasError('amount') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Criptomoneda</mat-label>
+        <mat-select placeholder="Criptomenda" formControlName="currency" required>
+          <mat-option *ngFor="let crypto of cryptoCurrencies" [value]="crypto.id">
+            {{ crypto.name }} ({{ crypto.acronym }})
+          </mat-option>
+        </mat-select>
+        <mat-hint  fxShow="cryptoCurrencies !== null && cryptoCurrencies.length === 0">No hay mas Criptomonedas disponibles (Todas están añadidas)</mat-hint>
+        <mat-error fxShow="portLineFrom.hasError('currency')">{{ portLineFrom.hasError('currency') }}</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="actionPortLineActions">
+    <button mat-raised-button (click)="closeDialog()" color="warn" [disabled]="portLineFrom.formIsInvalid()">{{ portLine.id ? 'Actualizar' : 'Crear' }}</button>
+    <button mat-button color="primary" (click)="closeDialog(true)">Cerrar</button>
+  </div>
+</div>
