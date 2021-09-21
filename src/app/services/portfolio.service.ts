@@ -37,8 +37,8 @@ export class PortfolioService {
 
     createPortfolio(data: any) {
         return new Promise<any>((resolve, reject) => {
-            this.http.post('/portfolio', data).toPromise().then(() => {
-                resolve(true);
+            this.http.post('/portfolio', data).toPromise().then((res) => {
+                resolve(res);
             }).catch(err => reject(err));
         });
     }

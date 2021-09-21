@@ -73,8 +73,8 @@ export class PortfoliosComponent implements OnInit {
           }).finally(() => this.loadingServ.actionInProgress = false);
         } else {
           this.portfolioServ.createPortfolio(newPortfolio).then(res => {
-            newPortfolio.eurValue = 0;
-            this.portList.push(newPortfolio);
+            res.eurValue = 0;
+            this.portList.push(res);
           }).finally(() => this.loadingServ.actionInProgress = false);
         }
       }

@@ -41,8 +41,9 @@ export class CurrencyService {
 
     createCurrency(data: any) {
         return new Promise<any>((resolve, reject) => {
-            this.http.post('/currency', data).toPromise().then(() => {
-                resolve(true);
+            this.http.post('/currency', data).toPromise().then((res) => {
+                console.log("createCurrency res", res);
+                resolve(res);
             }).catch(err => reject(err));
         });
     }

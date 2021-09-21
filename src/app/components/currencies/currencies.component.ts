@@ -29,12 +29,12 @@ export class CurrenciesComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    /*setTimeout(() => {
+    setTimeout(() => {
       if (!this.loadingServ.loadingRealCryptos && this.currencyServ.realCryptos.length === 0) {
         this.loadingServ.loadingRealCryptos = true;
         this.currencyServ.getAllRealCrypto();
       }
-    });*/
+    });
   }
 
   async prepareEURValues() {  
@@ -70,7 +70,7 @@ export class CurrenciesComponent implements OnInit, AfterContentInit {
           }).finally(() => this.loadingServ.actionInProgress = false);
         } else {
           this.currencyServ.createCurrency(newPortLine).then(res => {
-            this.currencyList.push(newPortLine);
+            this.currencyList.push(res);
             this.prepareEURValues();
           }).finally(() => this.loadingServ.actionInProgress = false);
         }
